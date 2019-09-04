@@ -1,4 +1,4 @@
-namespace BlazorWebApp.UILibrary.Card
+namespace Open.Blazor.Card
 {
     public interface IHandleChildStateChanges
     {

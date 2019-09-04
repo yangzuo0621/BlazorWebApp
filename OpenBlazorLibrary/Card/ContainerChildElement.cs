@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 
-namespace BlazorWebApp.UILibrary.Card
+namespace Open.Blazor.Card
 {
     public abstract class ContainerChildElement<TParent> : ChildElement<TParent>
     {

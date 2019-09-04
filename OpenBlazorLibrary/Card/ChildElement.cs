@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorWebApp.UILibrary.Card
+namespace Open.Blazor.Card
 {
     public abstract class ChildElement<TParent> : ComponentBase
     {

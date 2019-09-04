@@ -1,0 +1,33 @@
+<CascadingValue Value="this">
+    @ChildContent
+    @if (columns != null)
+    {
+        @columns.RenderContent
+    }
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public IEnumerable<object> Data { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    Columns columns;
+    public void SetColumns(Columns columns)
+    {
+        this.columns = columns;
+        StateHasChanged();
+    }
+
+    public void ChildStateChanged()
+    {
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized: Grid");
+        Console.WriteLine(Data.Count());
+    }
+}

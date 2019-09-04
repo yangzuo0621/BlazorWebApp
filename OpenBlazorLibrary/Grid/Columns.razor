@@ -1,0 +1,69 @@
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [CascadingParameter]
+    Grid grid { get; set; }
+
+    List<Column> columns = new List<Column>();
+    public void AddColumn(Column column)
+    {
+        this.columns.Add(column);
+        StateHasChanged();
+        grid.ChildStateChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized: Columns");
+        base.OnInitialized();
+        if (grid != null)
+        {
+            grid.SetColumns(this);
+        }
+    }
+
+    public RenderFragment RenderContent => (builder =>
+    {
+        int i = 0;
+        builder.OpenElement(i++, "table");
+        builder.AddAttribute(i++, "class", "table table-dark");
+
+        builder.OpenElement(i++, "thead");
+        foreach (var col in columns)
+        {
+            builder.OpenElement(i++, "th");
+            if (col.Title != null)
+            {
+                builder.AddContent(i++, col.Title);
+            }
+            else
+            {
+                builder.AddContent(i++, col.Field);
+            }
+            builder.CloseElement();
+        }
+        builder.CloseElement();
+
+        builder.OpenElement(i++, "tbody");
+        foreach (var data in grid.Data)
+        {
+            builder.OpenElement(i++, "tr");
+            foreach (var col in columns)
+            {
+                var type = data.GetType();
+                builder.OpenElement(i++, "td");
+                builder.AddContent(i++, type.GetProperty(col.Field).GetValue(data, null));
+                builder.CloseElement();
+            }
+            builder.CloseElement();
+        }
+        builder.CloseElement();
+
+        builder.CloseElement();
+    });
+}

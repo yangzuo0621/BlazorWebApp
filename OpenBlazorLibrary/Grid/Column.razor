@@ -1,0 +1,20 @@
+@code {
+    [Parameter]
+    public string Field { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [CascadingParameter]
+    Columns columns { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized: Column");
+        base.OnInitialized();
+        if (columns != null)
+        {
+            columns.AddColumn(this);
+        }
+    }
+}
