@@ -1,4 +1,4 @@
-namespace Open.Blazor.Card
+namespace Open.Blazor.Common
 {
     public enum ElementType
     {

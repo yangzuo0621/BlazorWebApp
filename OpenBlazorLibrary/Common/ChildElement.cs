@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Open.Blazor.Card
+namespace Open.Blazor.Common
 {
     public abstract class ChildElement<TParent> : ComponentBase
     {
         [CascadingParameter]
-        TParent Parent { get; set; }
+        public TParent Parent { get; set; }
 
         protected override void OnInitialized()
         {

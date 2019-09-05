@@ -1,0 +1,21 @@
+@using Open.Blazor.Common
+
+@inherits ContainerChildElement<IColumns>
+
+@code {
+    [Parameter]
+    public string Field { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+
+    protected override void Register(IColumns parent)
+    {
+        parent.AddColumn(this);
+    }
+
+    protected override string ContainerCssClass => "";
+      
+    protected override ElementType ContainerElementType => ElementType.Div;
+}

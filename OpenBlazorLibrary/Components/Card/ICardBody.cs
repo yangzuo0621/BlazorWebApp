@@ -1,4 +1,4 @@
-namespace Open.Blazor.Card
+namespace Open.Blazor.Components.Card
 {
     public interface ICardBody
     {

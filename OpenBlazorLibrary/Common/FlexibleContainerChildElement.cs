@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Open.Blazor.Card
+namespace Open.Blazor.Common
 {
     public abstract class FlexibleContainerChildElement<TParent> : ContainerChildElement<TParent>
     {

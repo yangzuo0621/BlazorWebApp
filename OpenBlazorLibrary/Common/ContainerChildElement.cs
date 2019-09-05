@@ -1,13 +1,13 @@
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 
-namespace Open.Blazor.Card
+namespace Open.Blazor.Common
 {
     public abstract class ContainerChildElement<TParent> : ChildElement<TParent>
     {
         [Parameter]
         public RenderFragment ChildContent { get; set; }
-
+        
         protected virtual ElementType ContainerElementType => ElementType.Div;
 
         protected virtual void CreateRenderContent(RenderTreeBuilder builder)

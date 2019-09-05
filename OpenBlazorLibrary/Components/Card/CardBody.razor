@@ -1,6 +1,8 @@
+@using Microsoft.AspNetCore.Components.RenderTree
+@using Open.Blazor.Common
+
 @inherits ChildElement<ICard>
 @implements ICardBody
-@using Microsoft.AspNetCore.Components.RenderTree
 
 <CascadingValue Value=this>
     @ChildContent

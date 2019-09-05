@@ -1,3 +1,8 @@
+@using Open.Blazor.Common
+
+@inherits ChildElement<IGrid>
+@implements IColumns
+
 <CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
@@ -9,25 +14,19 @@
     [CascadingParameter]
     Grid grid { get; set; }
 
+    protected override void Register(IGrid parent)
+    {
+        parent.SetColumns(this);
+    }
+
     List<Column> columns = new List<Column>();
     public void AddColumn(Column column)
     {
         this.columns.Add(column);
         StateHasChanged();
-        grid.ChildStateChanged();
     }
 
-    protected override void OnInitialized()
-    {
-        Console.WriteLine("OnInitialized: Columns");
-        base.OnInitialized();
-        if (grid != null)
-        {
-            grid.SetColumns(this);
-        }
-    }
-
-    public RenderFragment RenderContent => (builder =>
+    public override RenderFragment RenderContent => (builder =>
     {
         int i = 0;
         builder.OpenElement(i++, "table");
