@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coastalengineering-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coastalengineering
+  template:
+    metadata:
+      labels:
+        app: coastalengineering
+    spec:
+      containers:
+      - name: test
+        image: ycentralregistry.azurecr.io/test:v1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: coastalengineering-srevice
+spec:
+  type: LoadBalancer
+  selector:
+    app: coastalengineering
+  ports:
+    - port: 80
